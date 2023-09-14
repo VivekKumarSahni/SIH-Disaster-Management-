@@ -51,16 +51,19 @@ function Landing() {
     <div class="container">
       <center>
         <div class="row">
-            <div style={{textAlign: 'center'}} class="col-lg-8 mb-8">
+            <div style={{ width: "50%", margin: "auto" }} class="col-lg-8 mb-8">
                 <div class="card">
                     <div  class="card-body">
                <div class="container mt-2"> 
                <div class='row'>
-               <div  class="col-sm-8"> 
+               <div  class="col-sm-5"> 
             <input type="text" class="form-control" id="location" placeholder="Enter your location"/>
             </div>
-             <div class="col-sm-4">
-            <button class="btn btn-primary btn-block">Apply for Assistance</button>
+            <div class="col-sm-4">
+            <button class="btn btn-secondary">Apply for Assistance</button>
+            </div>
+            <div class="col-sm-3">
+            <button class="btn btn-secondary">Check status</button>
             </div>
             </div>
             </div> 
@@ -71,6 +74,46 @@ function Landing() {
         </div>
         </center>
     </div>
+</section>
+
+<section>
+<div class="row" style={{justifyContent:"center"}}>
+  <div class="col-md-3">
+  <div class="card">
+  <div class="card-body" style={{height: "250px"}}>
+    <h5 class="card-title">Disaster guidelines</h5>
+    <br></br>
+    <p class="card-text" style={{fontSize:"18px"}}>Disasters guidelines offer specific actions to reduce harm, save lives, and ensure a unified response in diverse situations.</p>
+    <br></br>
+    <a href="#" class="btn btn-primary">Learn More</a>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3">
+  <div class="card text-bg-dark">
+  <img src="..." class="card-img" alt="..."/>
+  <div class="card-img-overlay" style={{height: "250px"}}>
+    <h5 class="card-title">Support and Tools</h5>
+    <br></br>
+    <p class="card-text" style={{fontSize:"18px"}}>Practice and learn about emergency management with specialised resources followed by experts. Get help from SIH .</p>
+    <br></br>
+    <a href="#" class="btn btn-primary">Explore</a>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3">
+  <div class="card">
+  <div class="card-body" style={{height: "250px"}}>
+    <h5 class="card-title">Latest news and Updates</h5>
+    <br></br>
+    <p class="card-text" style={{fontSize:"18px"}}>All the headlines about recent incidents in your area. </p>
+    <br></br>
+    <br></br>
+    <a href="#" class="btn btn-primary">Check</a>
+  </div>
+</div>
+  </div>
+</div>
 </section>
 
 {/* <!-- About Section --> */}
