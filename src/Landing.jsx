@@ -39,7 +39,7 @@ function Landing() {
 {/* <!-- Hero Section --> */}
 <section class="hero bg-primary text-white text-center py-5">
     <div class="container">
-        <h1 class="display-4">Disaster Management System</h1>
+        <h1 class="display-4">RescueConnect</h1>
         <p class="lead">Empowering Resilience: Your Path to Safety</p>
         <a href="#contact" class="btn btn-light btn-lg">SOS</a>
     </div>
