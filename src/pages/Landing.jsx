@@ -2,7 +2,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import React from "react";
 import { useState } from "react";
-import { GuideBlog } from "./components/GuideBlog";
+import { GuideBlog } from "../components/GuideBlog";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -231,7 +231,8 @@ function Landing() {
                 </div>
               </div>
               <button
-                onClick={() => setBlog("news")}
+                onClick={() => {setBlog("news");
+              console.log(blog);}}
                 className="btn btn-warning"
                 style={{
                   width: "90%",

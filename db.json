@@ -1,0 +1,13 @@
+{
+  "auth": [
+    {
+      "deptName": "Electronics Engineering",
+      "govtId": "567567",
+      "address": "Hostel 9A- NIT Silchar",
+      "city": "Silchar",
+      "pinCode": "788010",
+      "state": "Assam",
+      "id": 1
+    }
+  ]
+}
