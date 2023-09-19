@@ -1,7 +1,7 @@
 import './App.css';
 import Landing2 from './pages/Landing2';
 import Register from './Auth/RegisterAgency';
-
+import Landing from './pages/Landing';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -15,9 +15,17 @@ import RegisterUser from './Auth/RegisterUser';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/agency',
     element: (
    <Landing2></Landing2>
+    )
+   
+
+  },
+  {
+    path: '/',
+    element: (
+   <Landing></Landing>
     )
   },
   {

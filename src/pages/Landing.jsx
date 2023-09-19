@@ -66,13 +66,13 @@ const navigate = useNavigate() ;
             // style = {{marginLeft:'65rem' }}
               class="btn btn-primary me-md-2 "
               type="button"
-              onClick={()=>navigate('/register')}
+              onClick={()=>navigate('/registerUser')}
              
 
             >
              Register 
             </button>
-            <button class="btn btn-primary" type="button">Login</button>
+            <button class="btn btn-primary" type="button" onClick={()=>navigate('/loginUser')}>Login</button>
             </div>
            
             <div class="collapse navbar-collapse" id="navbarNav">
