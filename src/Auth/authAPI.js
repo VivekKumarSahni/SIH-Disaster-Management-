@@ -1,18 +1,42 @@
 
-export function registerAgency(agencyData) {
-    return new Promise(async(resolve) =>{
-        console.log(agencyData);
-     const response = await fetch('http://localhost:8080/auth/signup',{
-      method:'POST',
-      body:JSON.stringify(agencyData),
-      headers:{'content-type':'application/json'}
-     })
-     const data = await response.json()
-     resolve({data});
-    
-    }
-    )
+
+async function getGeocode(agencyData) {
+  try {
+    const response = await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=8gsJ3dqy4Z2QqtFQ5UjgJ5cfvJDOGgqE&location=${agencyData.address},${agencyData.city}-${agencyData.pinCode},${agencyData.state}`);
+    const data = await response.json();
+    const lat = data.results[0].locations[0].latLng.lat;
+    const lng = data.results[0].locations[0].latLng.lng;
+    const coordinates = [lat, lng];
+    return { coordinates };
+  } catch (error) {
+  
+    console.error("Error fetching geocode:", error);
+    throw error; 
+}
+}
+
+
+export async function registerAgency(agencyData) {
+  try {
+    const coordinates = await getGeocode(agencyData);
+    agencyData = { ...agencyData, coordinates: [coordinates.coordinates[0], coordinates.coordinates[1]] };
+
+    console.log(agencyData);
+    const response = await fetch('http://localhost:8080/auth', {
+      method: 'POST',
+      body: JSON.stringify(agencyData),
+      headers: { 'content-type': 'application/json' }
+    });
+
+    const data = await response.json();
+    return { data };
+  } catch (error) {
+    console.error("Error registering agency:", error);
+    throw error;
   }
+}
+
+  
 
 
 
