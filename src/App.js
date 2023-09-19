@@ -1,5 +1,5 @@
 import './App.css';
-import Landing from './pages/Landing';
+import Landing2 from './pages/Landing2';
 import Register from './Auth/RegisterAgency';
 
 import {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-   <Landing/>
+   <Landing2></Landing2>
     )
   },
   {
