@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const server = express();
+const bodyParser = require('body-parser');
+const fs = require('fs') ;
 const SECRET_KEY = "SECRET_KEY";
 
 
@@ -53,7 +55,32 @@ async function main(){
 }
 
 
+server.use(bodyParser.json());
 
+
+let data = JSON.parse(fs.readFileSync('db.json'));
+
+
+server.get('/alerts', (req, res) => {
+  res.json(data.alerts);
+});
+
+// POST: Add an address to alerts
+server.post('/alerts', (req, res) => {
+  const { address } = req.body;
+
+  if (!address) {
+    return res.status(400).json({ error: 'Address is required.' });
+  }
+
+  
+  data.alerts.push(address);
+
+
+  fs.writeFileSync('db.json', JSON.stringify(data, null, 2));
+
+  res.status(201).json({ message: 'Address added to alerts successfully.' });
+});
 
 server.get('/', (req,res)=>{
         res.json({status:"success"});

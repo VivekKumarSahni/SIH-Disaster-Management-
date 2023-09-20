@@ -48,6 +48,7 @@ const Map = ({ onLocationSelect }) => {
           } catch (error) {
             console.error('Error fetching address:', error);
           }
+          
            onLocationSelect({ lat: latitude, lng: longitude  });
         },
         (error) => {

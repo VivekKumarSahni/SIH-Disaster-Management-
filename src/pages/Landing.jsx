@@ -35,6 +35,7 @@ function Landing() {
   const [blog, setBlog] = useState("guide");
   
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const Address = localStorage.getItem('address') ;
   let r = 0 ;
 const [showModal, setShowModal] = useState(false);
 const [s, sets] = useState(false);
@@ -59,6 +60,24 @@ const [locationData, setLocationData] = useState(null);
         } catch (error) {
           console.error('Error fetching address:', error);
         }
+        try {
+          const response = await fetch('http://localhost:8080/alerts', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ Address }),
+          });
+
+          if (response.status === 201) {
+              console.message( 'Address added to alerts successfully.');
+          } else {
+              const data = await response.json();
+                console.error(`Error: ${data.error}`);
+          }
+      } catch (error) {
+          console.error('Error:', error);
+      }
       });
     } else {
       console.error('Geolocation is not available in this browser.');
@@ -94,7 +113,7 @@ const navigate = useNavigate() ;
   return (
     <div>
        
-       <Navbar1></Navbar1>
+      <Navbar1></Navbar1>
 
       <head>
         <title>Your Landing Page</title>
@@ -106,47 +125,7 @@ const navigate = useNavigate() ;
       </head>
       <body>
         {/* <!-- Navigation Bar --> */}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
-            <a class="navbar-brand" href="/">
-              RescueConnect
-            </a>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end" style = {{marginLeft:'65rem' }}>
-            <button
-            // style = {{marginLeft:'65rem' }}
-              class="btn btn-primary me-md-2 "
-              type="button"
-              onClick={()=>navigate('/registerUser')}
-             
-
-            >
-             Register 
-            </button>
-            <button class="btn btn-primary" type="button" onClick={()=>navigate('/loginUser')}>Login</button>
-            </div>
-           
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="#features">
-                    Features
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#about">
-                    About Us
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#contact">
-                    Contact us
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
+       
         {/* <!-- Hero Section --> */}
         <section class="hero bg-primary text-white text-center py-5">
           <div class="container">
