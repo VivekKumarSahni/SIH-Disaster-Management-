@@ -5,7 +5,6 @@ import { useState } from "react";
 import { GuideBlog } from "../components/GuideBlog";
 import LocationPickerModal from "./LocationPickerModal";
 import { Navigate, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar/Navbar";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -57,7 +56,7 @@ const navigate = useNavigate() ;
         {/* <!-- Include additional CSS for your custom styles --> */}
       </head>
       <body>
-      <Navbar></Navbar>
+     
         
         {/* <!-- Hero Section --> */}
         <section class="hero bg-primary text-white text-center py-5">
