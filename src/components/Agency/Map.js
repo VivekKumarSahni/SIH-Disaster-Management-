@@ -20,7 +20,7 @@
 // );
 // }
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup,Circle } from "react-leaflet";
 import { Icon, divIcon, point } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import './Map.css';
@@ -32,7 +32,7 @@ import { useEffect } from "react";
 export default function Map() {
 
     const customIcon = new Icon({
-        // iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+        
         iconUrl: require("./location.png"),
         iconSize: [38, 38] // size of the icon
       });
@@ -64,36 +64,27 @@ export default function Map() {
       
     </div>
       {agencies && <MapContainer center={[24.80498, 92.77359]} zoom={13}>
-        {/* OPEN STREEN MAPS TILES */}
+       
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
 
-        {/* Mapping through the markers */}
-       {/* {markers.map((marker) => (
-          <Marker position={marker.geocode} icon={customIcon}>
-            <Popup>{marker.popUp}</Popup>
-          </Marker>
-        ))} */}
+        
        {agencies.map((marker) => (
           <Marker position={marker.coordinates} icon={customIcon}>
             <Popup>{marker.deptName}</Popup>
           </Marker>
         ))}
+         <Circle
+      center={[24.75987,92.78827]}
+      pathOptions={{ fillColor: '#088F8F',color:'#088F8F',fillOpacity:0.1,width:0.1 }}
+      radius={10000}>
+      
+    </Circle>
 
-        {/* Hard coded markers */}
-        {/* <Marker position={[51.505, -0.09]} icon={customIcon}>
-          <Popup>This is popup 1</Popup>
-        </Marker>
-        <Marker position={[51.504, -0.1]} icon={customIcon}>
-          <Popup>This is popup 2</Popup>
-        </Marker>
-        <Marker position={[51.5, -0.09]} icon={customIcon}>
-          <Popup>This is popup 3</Popup>
-        </Marker>
-       */}
+     
       
        </MapContainer>}
        </>

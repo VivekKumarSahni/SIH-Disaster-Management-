@@ -64,6 +64,23 @@
         92.75079
       ],
       "id": 5
+    },
+    {
+      "deptName": "Agency 6",
+      "govtId": "2342343",
+      "address": "hostel 8",
+      "city": "SILCHAR",
+      "pinCode": "788010",
+      "state": "Assam",
+      "coordinates": [
+        24.75987,
+        92.78827
+      ],
+      "id": 6
     }
+  ],
+  "alerts":[
+    {"address":"Hostel-9 Nit Silchar, Silchar,Assam"
+  }
   ]
 }

@@ -78,7 +78,7 @@ const dispatch= useDispatch();
                 </div>
                 <div className="w-3/4">
                   <input
-                   type="tel"
+                   type="number"
                    {...register("govtId",{
                     required : "Govt ID is required",
                     pattern: {
@@ -92,6 +92,42 @@ const dispatch= useDispatch();
                 </div>
               </div>
             </div>
+
+
+            <div>
+              <div className="flex items-center justify-between">
+                <div className="w-1/4">
+                  {" "}
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Password:
+                  </label>
+                </div>
+                <div className="w-3/4">
+                  <input
+                   type="password"
+                   {...register("password",{
+                    required : "password is required",
+                    pattern: {
+                        value:
+                        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                      message: `- at least 8 characters\n
+                      - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number\n
+                      - Can contain special characters`,
+                    },
+                   })}
+                   id="password"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+            </div>
+
+
+
+
 
             <div>
               <div className="flex items-center justify-between">
@@ -149,7 +185,7 @@ const dispatch= useDispatch();
                     htmlFor="pinCode"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    Zip Code:
+                    Pin Code:
                   </label>
                 </div>
                 <div className="w-3/4">
@@ -209,7 +245,7 @@ const dispatch= useDispatch();
           <p className="mt-10 text-center text-sm text-gray-500">
             Already Registered?{" "}
             <Link
-              to={"/login_Agency"}
+              to={"/loginAgency"}
               className="font-semibold leading-6 text-gray-900 hover:text-gray-500"
             >
               Sign in

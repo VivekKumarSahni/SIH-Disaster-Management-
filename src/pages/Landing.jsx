@@ -6,6 +6,9 @@ import { useState , useEffect} from "react";
 import { GuideBlog } from "../components/GuideBlog";
 import LocationPickerModal from "./LocationPickerModal";
 import { Navigate, useNavigate } from "react-router-dom";
+import Navbar1 from "../components/Navbar1";
+
+
 import Modal1 from "./Modal1";
 const responsive = {
   superLargeDesktop: {
@@ -90,6 +93,9 @@ const navigate = useNavigate() ;
 
   return (
     <div>
+       
+       <Navbar1></Navbar1>
+
       <head>
         <title>Your Landing Page</title>
         <link

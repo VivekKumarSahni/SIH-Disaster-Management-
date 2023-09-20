@@ -1,5 +1,6 @@
 import './App.css';
 import Landing2 from './pages/Landing2';
+import Landing from './pages/Landing';
 import Register from './Auth/RegisterAgency';
 import Landing from './pages/Landing';
 import {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
   {
     path: '/agency',
     element: (
-   <Landing2></Landing2>
+   <Landing></Landing>
     )
    
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     element: (<RegisterUser></RegisterUser>),
   },
   {
+    path: '/myAgency',
+    element: (<Landing2></Landing2>),
+  },
+  {
     path: '/loginUser',
     element: (<Login></Login>),
   },
@@ -41,7 +46,7 @@ const router = createBrowserRouter([
     element: (<RegisterAgency></RegisterAgency>),
   },
   {
-    path: '/login_Agency',
+    path: '/loginAgency',
     element: (<Login_Agency></Login_Agency>),
   },
  
