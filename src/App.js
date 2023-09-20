@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     element: (<RegisterAgency></RegisterAgency>),
   },
   {
-    path: '/login_Agency',
+    path: '/loginAgency',
     element: (<Login_Agency></Login_Agency>),
   },
  

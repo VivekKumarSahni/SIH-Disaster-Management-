@@ -5,7 +5,9 @@ export function registerAgency(agencyData) {
      const response = await fetch('http://localhost:8080/auth/signup',{
       method:'POST',
       body:JSON.stringify(agencyData),
-      headers:{'content-type':'application/json'}
+      headers:{'content-type':'application/json'},
+      withCredentials:false,
+     
      })
      const data = await response.json()
      resolve({data});
@@ -41,7 +43,7 @@ export function registerAgency(agencyData) {
   export function checkAgency(loginInfo) {
     return new Promise(async (resolve,reject) => {
       try {
-        const response = await fetch('http://localhost:8080/auth/loginAgency', {
+        const response = await fetch('http://localhost:8080/auth/login', {
           method: 'POST',
           body: JSON.stringify(loginInfo),
           headers: { 'content-type': 'application/json' },
