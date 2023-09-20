@@ -65,7 +65,7 @@ export async function registerAgency(agencyData) {
   export function checkAgency(loginInfo) {
     return new Promise(async (resolve,reject) => {
       try {
-        const response = await fetch('http://localhost:8080/auth/loginAgency', {
+        const response = await fetch('http://localhost:8080/auth/login', {
           method: 'POST',
           body: JSON.stringify(loginInfo),
           headers: { 'content-type': 'application/json' },

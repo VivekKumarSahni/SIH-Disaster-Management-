@@ -82,7 +82,7 @@ export default function Login_Agency() {
                 <div className="text-sm">
                   <Link
                     to={'/forgot-password'}
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="font-semibold text-gray-600 hover:text-gray-500"
                   >
                     Forgot password?
                   </Link>
@@ -109,7 +109,7 @@ export default function Login_Agency() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Log in
               </button>
@@ -120,7 +120,7 @@ export default function Login_Agency() {
             Not a member?{' '}
             <Link
               to="/registerAgency"
-              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              className="font-semibold leading-6 text-gray-600 hover:text-gray-500"
             >
               Create an Account
             </Link>
