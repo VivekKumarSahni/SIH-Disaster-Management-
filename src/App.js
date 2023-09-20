@@ -1,5 +1,6 @@
 import './App.css';
 import Landing2 from './pages/Landing2';
+import Landing from './pages/Landing';
 import Register from './Auth/RegisterAgency';
 
 import {
