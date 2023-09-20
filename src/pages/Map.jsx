@@ -63,6 +63,7 @@ const Map = ({ onLocationSelect }) => {
     if (!map) {
       initializeMap();
     }
+    localStorage.setItem('address' , currentAddress) ;
   }, [map, onLocationSelect]);
 
   return (
