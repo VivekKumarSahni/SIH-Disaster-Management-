@@ -7,6 +7,7 @@ const SECRET_KEY = "SECRET_KEY";
 
 
 const authRouter = require('./routes/Auth');
+const agencyRouter = require('./routes/Agency');
 
 
 // middlewares
@@ -27,14 +28,6 @@ const Auth = (req,res, next)=>{
             res.sendStatus(401);
         }
 }
-
-
-
-server.use(express.json()); // to parse req.body
-server.use('/auth', authRouter.router);
-
-
-
 server.use(cors({
     origin: 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -42,11 +35,20 @@ server.use(cors({
   }));
 
 
+server.use(express.json()); // to parse req.body
+server.use('/auth', authRouter.router);
+server.use('/agency', agencyRouter.router);
+
+
+
+
+
+
 
 main().catch(err=> console.log(err));
 
 async function main(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/disasterDB');
+    await mongoose.connect('mongodb://127.0.0.1:27017/RescueConnect');
     console.log('database connected')
 }
 

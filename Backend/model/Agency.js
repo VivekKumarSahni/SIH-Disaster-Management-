@@ -7,6 +7,7 @@ const agencySchema = new Schema({
     deptName:{type:String, required:true},
     address:{type:String},
     city:{type:String, required:true},
+    coordinates:[],
     pinCode:{type:Number, required:true},
     state:{type:String, required:true},
     token:{type:String},

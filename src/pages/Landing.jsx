@@ -5,6 +5,7 @@ import { useState } from "react";
 import { GuideBlog } from "../components/GuideBlog";
 import LocationPickerModal from "./LocationPickerModal";
 import { Navigate, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -46,6 +47,7 @@ const navigate = useNavigate() ;
 
   return (
     <div>
+      
       <head>
         <title>Your Landing Page</title>
         <link
@@ -55,48 +57,8 @@ const navigate = useNavigate() ;
         {/* <!-- Include additional CSS for your custom styles --> */}
       </head>
       <body>
-        {/* <!-- Navigation Bar --> */}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
-            <a class="navbar-brand" href="/">
-              RescueConnect
-            </a>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end" style = {{marginLeft:'65rem' }}>
-            <button
-            // style = {{marginLeft:'65rem' }}
-              class="btn btn-primary me-md-2 "
-              type="button"
-              onClick={()=>navigate('/register')}
-             
-
-            >
-             Register 
-            </button>
-            <button class="btn btn-primary" type="button">Login</button>
-            </div>
-           
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="#features">
-                    Features
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#about">
-                    About Us
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#contact">
-                    Contact us
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
+      <Navbar></Navbar>
+        
         {/* <!-- Hero Section --> */}
         <section class="hero bg-primary text-white text-center py-5">
           <div class="container">

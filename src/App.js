@@ -18,12 +18,16 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-   <Landing2></Landing2>
+   <Landing></Landing>
     )
   },
   {
     path: '/registerUser',
     element: (<RegisterUser></RegisterUser>),
+  },
+  {
+    path: '/myAgency',
+    element: (<Landing2></Landing2>),
   },
   {
     path: '/loginUser',
