@@ -1,18 +1,16 @@
-import React from 'react';
+import React from 'react'
 import { Modal } from 'react-bootstrap';
-import Map from './Map';
 import './custom.css'; 
 
-
-const LocationPickerModal = ({ show, onHide, onLocationSelect }) => {
+const Modal1 = ({ show, onHide }) => {
   return (
     <enter>
     <Modal show={show} onHide={onHide} centered className="custom-modal">
       <Modal.Header closeButton>
-        <Modal.Title>Current Location</Modal.Title>
+        <Modal.Title>Request Sent </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Map onLocationSelect={onLocationSelect} />
+       Rescue Agencies will reach your location soon .. 
       </Modal.Body>
       <Modal.Footer>
         <button type="button" className="btn btn-secondary" onClick={onHide}>
@@ -21,7 +19,9 @@ const LocationPickerModal = ({ show, onHide, onLocationSelect }) => {
       </Modal.Footer>
     </Modal>
     </enter>
-  );
-};
+  )
+}
 
-export default LocationPickerModal;
+export default Modal1
+
+

@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
-import { signOutAsync } from './authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectloggedInAgency, signOutAsync } from './authSlice';
+import { Link, Navigate } from 'react-router-dom';
 
 function SignOut() {
     const dispatch = useDispatch();
-    const token = localStorage.getItem('token');
-
-    useEffect(()=>{
+   
+    const agency = useSelector(selectloggedInAgency)
+    useEffect(() => {
         dispatch(signOutAsync());
-    })
+        window.location.reload();
+      }, [dispatch]);
+
 
   return (
-    <>
-        {!token && <Navigate to="/" replace={true}></Navigate>}
+    <>   {console.log(agency)}
+       {!agency && <Navigate to="/" replace={true}></Navigate>}
     </>
   )
 }

@@ -3,12 +3,14 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const server = express();
+const fs = require('fs') ;
 const SECRET_KEY = "SECRET_KEY";
 
 
 
 const authRouter = require('./routes/Auth');
 const agencyRouter = require('./routes/Agency');
+const alertRouter = require('./routes/Alert');
 
 
 // middlewares
@@ -42,7 +44,8 @@ server.use(cors({
 
 server.use(express.json()); // to parse req.body
 server.use('/auth', authRouter.router);
-server.use('/agency',Auth, agencyRouter.router);
+server.use('/agency', agencyRouter.router);
+server.use('/alerts', alertRouter.router);
 
 
 
@@ -56,9 +59,6 @@ async function main(){
     await mongoose.connect('mongodb://127.0.0.1:27017/disasterDB');
     console.log('database connected')
 }
-
-
-
 
 server.get('/', (req,res)=>{
         res.json({status:"success"});

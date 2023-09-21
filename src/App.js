@@ -1,8 +1,8 @@
 import './App.css';
 import Landing2 from './pages/Landing2';
-import Landing from './pages/Landing';
-import Register from './Auth/RegisterAgency';
 
+import Register from './Auth/RegisterAgency';
+import Landing from './pages/Landing';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -15,11 +15,19 @@ import RegisterAgency from './Auth/RegisterAgency';
 import RegisterUser from './Auth/RegisterUser';
 import LandingPage from './pages/LandingPage';
 import Landing2Page from './pages/Landing2Page';
-import { signOut } from './Auth/authAPI';
+import SignOut from './Auth/SignOut';
 
 
 
 const router = createBrowserRouter([
+  {
+    path: '/agency',
+    element: (
+   <Landing2></Landing2>
+    )
+   
+
+  },
   {
     path: '/',
     element: (
@@ -48,7 +56,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/signout',
-    element: (<signOut></signOut>),
+    element: (<SignOut></SignOut>),
   },
  
 

@@ -22,7 +22,7 @@ exports.createAgency = async (req, res) => {
 
         // res.status(201).json({doc});
     } catch (err) {
-      res.status(400).json(err);
+      res.status(400).json(err)
     }
   };
 

@@ -53,7 +53,7 @@ function Navbar2({ children }) {
                       <Link to={"/"}>
                         <img
                           className="h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                          src="https://cdn1.iconfinder.com/data/icons/smart-technology-turquoise-vol-1/256/Disaster_Management-512.png"
                           alt="Your Company"
                         />
                       </Link>
@@ -67,9 +67,9 @@ function Navbar2({ children }) {
                               to={item.link}
                               className={classNames(
                                 item.current
-                                  ? 'bg-gray-900 text-white'
-                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                'rounded-md px-3 py-2 text-sm font-medium'
+                                  ? 'bg-gray-900 text-white no-underline'
+                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white no-underline',
+                                'rounded-md px-3 py-2 text-sm font-medium no-underline'
                               )}
                               aria-current={item.current ? 'page' : undefined}
                             >
@@ -91,7 +91,7 @@ function Navbar2({ children }) {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src="../Assets/user2.png"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2tH5zoCc1erY-Z-ilixkEOwR_CHsnsQwj702OMABHLdOHKlaDcbmPKLjzFMZajKIhnxA&usqp=CAU"
                               alt=""
                             />
                           </Menu.Button>
@@ -112,8 +112,8 @@ function Navbar2({ children }) {
                                   <Link
                                     to={item.link}
                                     className={classNames(
-                                      active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
+                                      active ? "bg-gray-100 no-underline" : "",
+                                      "block px-4 py-2 text-sm text-gray-700 no-underline"
                                     )}
                                   >
                                     {item.name}
@@ -127,8 +127,8 @@ function Navbar2({ children }) {
                                   <Link
                                     to={item.link}
                                     className={classNames(
-                                      active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
+                                      active ? "bg-gray-100 no-underline" : "",
+                                      "block px-4 py-2 text-sm text-gray-700 no-underline"
                                     )}
                                   >
                                     {item.name}
@@ -170,9 +170,9 @@ function Navbar2({ children }) {
                       href={item.href}
                       className={classNames(
                         item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "block rounded-md px-3 py-2 text-base font-medium"
+                          ? "bg-gray-900 text-white no-underline"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white no-underline",
+                        "block rounded-md px-3 py-2 text-base font-medium no-underline"
                       )}
                       aria-current={item.current ? "page" : undefined}
                     >
@@ -205,7 +205,7 @@ function Navbar2({ children }) {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 no-underline hover:text-white no-underline"
                       >
                         {item.name}
                       </Disclosure.Button>
@@ -215,7 +215,7 @@ function Navbar2({ children }) {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 no-underline hover:text-white no-underline"
                       >
                         {item.name}
                       </Disclosure.Button>

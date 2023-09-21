@@ -125,6 +125,7 @@ const initialState = {
           .addCase(signOutAsync.fulfilled, (state, action) => {
             state.status = 'idle';
             state.loggedInUser = null;
+            state.loggedInAgency=null;
             state.agency = null
           })
     },
