@@ -72,7 +72,7 @@ export default function Map() {
     <div>
       
     </div>
-      {agencies && <MapContainer center={[24.80498, 92.77359]} zoom={13}>
+      {(agencies && alerts) && <MapContainer center={[24.80498, 92.77359]} zoom={13}>
        
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -86,9 +86,9 @@ export default function Map() {
             <Popup>{marker.deptName}</Popup>
           </Marker>
         ))}
-       {alerts.map((marker) => (
+      {alerts.map((marker) => (
           <Marker position={marker.coordinates} icon={customIcon2}>
-            <Popup>{marker.address}</Popup>
+            <Popup>{marker.Address}</Popup>
           </Marker>
         ))}
          <Circle
