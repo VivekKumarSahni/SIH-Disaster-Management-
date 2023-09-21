@@ -1,4 +1,5 @@
 import React from "react";
+import "./guide.css";
 export const GuideBlog = (props) => {
   const { blog } = props;
   if (blog === "guide") {
@@ -17,47 +18,47 @@ export const GuideBlog = (props) => {
               <div>
                 {/* Before a Disaster */}
                 <h4>Before a Disaster:</h4>
-                <ol>
-                  <li>
+                <ul>
+                  <li className="line">
                     Emergency Kit: Prepare an emergency kit with essential
                     supplies, including non-perishable food, water, a
                     flashlight, batteries, a first-aid kit, medications,
                     important documents, and personal hygiene items.
                   </li>
-                  <li>
+                  <li className="line">
                     Communication Plan: Establish a communication plan with your
                     family and loved ones. Ensure everyone knows how to contact
                     each other in case of separation.
                   </li>
-                  <li>
+                  <li className="line">
                     Emergency Contacts: Have a list of emergency contacts,
                     including local authorities, hospitals, and utility
                     companies, readily available.
                   </li>
-                  <li>
+                  <li className="line">
                     Evacuation Plan: Familiarize yourself with evacuation routes
                     and shelters in your area. Plan how you will evacuate,
                     including transportation and meeting points.
                   </li>
-                  <li>
+                  <li className="line">
                     Home Safety: Secure heavy furniture, appliances, and objects
                     that could become projectiles during strong winds or
                     earthquakes.
                   </li>
-                  <li>
+                  <li className="line">
                     Insurance: Review your insurance policies, including
                     homeowners or renters insurance, and ensure they cover
                     potential disasters in your area.
                   </li>
-                  <li>
+                  <li className="line">
                     Alert Systems: Sign up for local emergency alerts and
                     warnings provided by authorities through apps or text
                     messages.
                   </li>
-                </ol>
+                </ul>
                 {/* During a Disaster */}
                 <h4>During a Disaster:</h4>
-                <ol>
+                <ul>
                   <li>
                     Stay Informed: Keep a battery-powered or hand-crank radio to
                     stay updated on the situation through local news and
@@ -85,11 +86,11 @@ export const GuideBlog = (props) => {
                     instructed to do so or if you suspect damage. Be cautious
                     when using alternative heating or cooking sources.
                   </li>
-                </ol>
+                </ul>
 
                 {/* After a Disaster */}
                 <h4>After a Disaster:</h4>
-                <ol>
+                <ul>
                   <li>
                     Safety Check: Check yourself and those around you for
                     injuries. Provide first aid as needed.
@@ -130,7 +131,7 @@ export const GuideBlog = (props) => {
                     Recovery: Follow recovery guidelines provided by local
                     authorities and community organizations.
                   </li>
-                </ol>
+                </ul>
               </div>
             </p>
           </div>
