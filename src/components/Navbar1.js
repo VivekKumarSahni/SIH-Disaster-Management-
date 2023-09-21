@@ -21,12 +21,28 @@ function Navbar1() {
               id="basic-nav-dropdown"
               style={{
                 position: "absolute",
-                right: 80,
-                top: "0%",
+                right: 160,
+                top: "2%",
               }}
             >
               <NavDropdown.Item href="/registerAgency"> Register</NavDropdown.Item>
               <NavDropdown.Item href="/loginAgency">
+               Login
+              </NavDropdown.Item>
+              {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider /> */}
+            </NavDropdown>
+            <NavDropdown
+              title="User"
+              id="basic-nav-dropdown"
+              style={{
+                position: "absolute",
+                right: 90,
+                top: "2%",
+              }}
+            >
+              <NavDropdown.Item href="/registerUser"> Register</NavDropdown.Item>
+              <NavDropdown.Item href="/loginUser">
                Login
               </NavDropdown.Item>
               {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>

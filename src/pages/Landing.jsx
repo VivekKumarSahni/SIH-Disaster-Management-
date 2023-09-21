@@ -60,24 +60,7 @@ const [locationData, setLocationData] = useState(null);
         } catch (error) {
           console.error('Error fetching address:', error);
         }
-        try {
         
-          const response = await fetch('http://localhost:8080/alerts', {
-              method: 'POST',
-              
-              body: JSON.stringify( {Address} ),
-              headers: {'Content-Type': 'application/json', },
-          });
-
-          if (response.status === 201) {
-              console.message( 'Address added to alerts successfully.');
-          } else {
-              const data = await response.json();
-                console.error(`Error: ${data.error}`);
-          }
-      } catch (error) {
-          console.error('Error:', error);
-      }
       });
     } else {
       console.error('Geolocation is not available in this browser.');
@@ -99,8 +82,26 @@ const handleModalShow = () => {
   setcurrent(true) ;
 
 };
-const handle=()=>{
+const handle=async()=>{
   sets(true) ;
+  try {
+        
+    const response = await fetch('http://localhost:8080/alerts', {
+        method: 'POST',
+        
+        body: JSON.stringify( {Address} ),
+        headers: {'Content-Type': 'application/json', },
+    });
+
+    if (response.status === 201) {
+        console.message( 'Address added to alerts successfully.');
+    } else {
+        const data = await response.json();
+          console.error(`Error: ${data.error}`);
+    }
+} catch (error) {
+    console.error('Error:', error);
+}
 }
 const handle2  = () =>{
   sets(false) ;
@@ -170,7 +171,11 @@ const navigate = useNavigate() ;
                             />
                           </div>
                           <div class="col-sm-4">
-                            <button class="btn btn-secondary" onClick={handle}>
+                            <button class="btn btn-secondary" onClick={handle
+                            
+                            
+                            
+                            }>
                               Apply for Assistance
                             </button>
                            <Modal1 show={s} onHide={handle2}/>
