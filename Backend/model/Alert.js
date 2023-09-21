@@ -3,11 +3,12 @@ const { Schema } = mongoose;
 
 const alertSchema = new Schema({
   
-    address:{type:String, required:true},
+    Address:{type:String},
+    status:{type:String}
 
     
     
 });
 
 
-exports.Agency = mongoose.model('Alert', alertSchema);
+exports.Alert = mongoose.model('Alert', alertSchema);

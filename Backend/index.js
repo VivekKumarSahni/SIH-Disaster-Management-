@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const server = express();
-const bodyParser = require('body-parser');
-const fs = require('fs') ;
 const SECRET_KEY = "SECRET_KEY";
 
 

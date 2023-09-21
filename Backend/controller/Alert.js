@@ -12,3 +12,13 @@ exports.fetchAllAlerts = async (req,res)=>{
 
     }
 }
+exports.addAlert = async (req, res) => {
+    // this product we have to get from API body
+    const alert = new Alert(req.body);
+    try {
+      const doc = await alert.save();
+      res.status(201).json(doc);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  };
