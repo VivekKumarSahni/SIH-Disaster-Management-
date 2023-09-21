@@ -85,11 +85,12 @@ const handleModalShow = () => {
 const handle=async()=>{
   sets(true) ;
   try {
-        
+    const address={Address,status:"pending"};
+    console.log(address);
     const response = await fetch('http://localhost:8080/alerts', {
         method: 'POST',
         
-        body: JSON.stringify( {Address} ),
+        body: JSON.stringify(address ),
         headers: {'Content-Type': 'application/json', },
     });
 
