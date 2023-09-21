@@ -10,6 +10,7 @@ const SECRET_KEY = "SECRET_KEY";
 
 const authRouter = require('./routes/Auth');
 const agencyRouter = require('./routes/Agency');
+const alertRouter = require('./routes/Alert');
 
 
 // middlewares
@@ -40,6 +41,7 @@ server.use(cors({
 server.use(express.json()); // to parse req.body
 server.use('/auth', authRouter.router);
 server.use('/agency', agencyRouter.router);
+server.use('/alerts', alertRouter.router);
 
 
 
@@ -53,34 +55,6 @@ async function main(){
     await mongoose.connect('mongodb://127.0.0.1:27017/RescueConnect');
     console.log('database connected')
 }
-
-
-server.use(bodyParser.json());
-
-
-let data = JSON.parse(fs.readFileSync('db.json'));
-
-
-server.get('/alerts', (req, res) => {
-  res.json(data.alerts);
-});
-
-// POST: Add an address to alerts
-server.post('/alerts', (req, res) => {
-  const { address } = req.body;
-
-  if (!address) {
-    return res.status(400).json({ error: 'Address is required.' });
-  }
-
-  
-  data.alerts.push(address);
-
-
-  fs.writeFileSync('db.json', JSON.stringify(data, null, 2));
-
-  res.status(201).json({ message: 'Address added to alerts successfully.' });
-});
 
 server.get('/', (req,res)=>{
         res.json({status:"success"});

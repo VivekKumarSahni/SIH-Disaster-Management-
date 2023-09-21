@@ -61,12 +61,12 @@ const [locationData, setLocationData] = useState(null);
           console.error('Error fetching address:', error);
         }
         try {
+        
           const response = await fetch('http://localhost:8080/alerts', {
               method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ Address }),
+              
+              body: JSON.stringify( {Address} ),
+              headers: {'Content-Type': 'application/json', },
           });
 
           if (response.status === 201) {
