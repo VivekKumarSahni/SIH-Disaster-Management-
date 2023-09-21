@@ -3,6 +3,8 @@ import "react-multi-carousel/lib/styles.css";
 import React from "react";
 import { useState } from "react";
 import { GuideBlog } from "../components/GuideBlog";
+import LocationPickerModal from "./LocationPickerModal";
+import { Navigate, useNavigate } from "react-router-dom";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -23,8 +25,24 @@ const responsive = {
   },
 };
 
+
 function Landing() {
   const [blog, setBlog] = useState("guide");
+  const [selectedLocation, setSelectedLocation] = useState(null);
+const [showModal, setShowModal] = useState(false);
+
+const handleLocationSelect = (location) => {
+  setSelectedLocation(location);
+};
+
+const handleModalShow = () => {
+  setShowModal(true);
+};
+
+const handleModalHide = () => {
+  setShowModal(false);
+};
+const navigate = useNavigate() ;
 
   return (
     <div>
@@ -43,17 +61,20 @@ function Landing() {
             <a class="navbar-brand" href="/">
               RescueConnect
             </a>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end" style = {{marginLeft:'65rem' }}>
             <button
-              class="navbar-toggler"
+            // style = {{marginLeft:'65rem' }}
+              class="btn btn-primary me-md-2 "
               type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+              onClick={()=>navigate('/register')}
+             
+
             >
-              <span class="navbar-toggler-icon"></span>
+             Register 
             </button>
+            <button class="btn btn-primary" type="button">Login</button>
+            </div>
+           
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -81,9 +102,14 @@ function Landing() {
           <div class="container">
             <h1 class="display-4">RescueConnect</h1>
             <p class="lead">Empowering Resilience: Your Path to Safety</p>
-            <a href="#contact" class="btn btn-light btn-lg">
+            <button class="btn btn-light btn-lg"  onClick={handleModalShow}>
               SOS
-            </a>
+            </button>
+            <LocationPickerModal
+        show={showModal}
+        onHide={handleModalHide}
+        onLocationSelect={handleLocationSelect}
+      />
           </div>
         </section>
 
