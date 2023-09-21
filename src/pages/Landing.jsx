@@ -87,10 +87,17 @@ const handle=async()=>{
   try {
     const address={Address,status:"pending"};
     console.log(address);
+    const res = await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=8gsJ3dqy4Z2QqtFQ5UjgJ5cfvJDOGgqE&location=${address.Address}`);
+    const data = await res.json();
+    const lat = data.results[0].locations[0].latLng.lat;
+    const lng = data.results[0].locations[0].latLng.lng;
+    const coordinates = [lat, lng];
+    const alert = { ...address, coordinates };
+    console.log(alert);
     const response = await fetch('http://localhost:8080/alerts', {
         method: 'POST',
         
-        body: JSON.stringify(address ),
+        body: JSON.stringify(alert ),
         headers: {'Content-Type': 'application/json', },
     });
 
