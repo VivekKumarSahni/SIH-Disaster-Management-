@@ -14,6 +14,10 @@ const initialState = {
     'agency/registerAgency',
     async (agencyData) => {
       const response = await registerAgency(agencyData);
+      const { token } = response.data;
+
+      // Store the token in localStorage
+      localStorage.setItem('token', token);
       return response.data;
     }
   );
@@ -26,6 +30,10 @@ const initialState = {
      try{
       const response = await checkUser(loginInfo);
       return response.data;
+      const { token } = response.data;
+
+      // Store the token in localStorage
+      localStorage.setItem('token', token);
      }catch(err){
         console.log(err);
         return rejectWithValue(err)
@@ -40,6 +48,10 @@ const initialState = {
      try{
       const response = await checkAgency(loginInfo);
       return response.data;
+      const { token } = response.data;
+
+      // Store the token in localStorage
+      localStorage.setItem('token', token);
      }catch(err){
         console.log(err);
         return rejectWithValue(err)
@@ -49,9 +61,9 @@ const initialState = {
   );
   
   export const signOutAsync = createAsyncThunk(
-    'user/signOut',
-    async (id) => {
-      const response = await signOut(id);
+    'agency/signOut',
+    async () => {
+      const response = await signOut();
       // The value we return becomes the `fulfilled` action payload
       return response.data;
     }

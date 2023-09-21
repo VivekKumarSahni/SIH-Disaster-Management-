@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { registerAgencyAsync } from "./authSlice";
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 
 export default function RegisterAgency() {
 
-const {register,handleSubmit,formState:{errors}} =useForm();
+const {register,handleSubmit,formState:{errors},reset} =useForm();
 const dispatch= useDispatch();
+const Navigate= useNavigate();
+const [registered, setRegistered]  = useState(false);
+
+const handleNavigate = ()=>{
+  Navigate('/myAgency');
+  setRegistered(false);
+}
 
     
   return (
@@ -37,6 +44,9 @@ const dispatch= useDispatch();
             onSubmit={handleSubmit((data) => {
               console.log(data);
               dispatch(registerAgencyAsync(data));
+              reset();
+              // setRegistered(true);
+            
               
             })}
           >
@@ -240,6 +250,15 @@ const dispatch= useDispatch();
                 Register
               </button>
             </div>
+           {registered ?  <div>
+              <button
+               
+                className="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={handleNavigate}
+              >
+                Go to Map
+              </button>
+            </div> : null}
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">

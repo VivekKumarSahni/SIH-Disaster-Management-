@@ -13,12 +13,17 @@ import Login from './Auth/Login_User';
 import Login_Agency from './Auth/Login_Agency';
 import RegisterAgency from './Auth/RegisterAgency';
 import RegisterUser from './Auth/RegisterUser';
+import LandingPage from './pages/LandingPage';
+import Landing2Page from './pages/Landing2Page';
+import { signOut } from './Auth/authAPI';
+
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
-   <Landing></Landing>
+       <LandingPage></LandingPage>
     )
   },
   {
@@ -27,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/myAgency',
-    element: (<Landing2></Landing2>),
+    element: (<Landing2Page></Landing2Page>),
   },
   {
     path: '/loginUser',
@@ -41,7 +46,12 @@ const router = createBrowserRouter([
     path: '/loginAgency',
     element: (<Login_Agency></Login_Agency>),
   },
+  {
+    path: '/signout',
+    element: (<signOut></signOut>),
+  },
  
+
 ]);
 
 function App() {

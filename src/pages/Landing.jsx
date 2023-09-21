@@ -50,7 +50,6 @@ const navigate = useNavigate() ;
   return (
     <div>
        
-       <Navbar1></Navbar1>
 
       <head>
         <title>Your Landing Page</title>

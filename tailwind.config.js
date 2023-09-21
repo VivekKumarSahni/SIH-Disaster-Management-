@@ -6,9 +6,15 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    extend: {
+      backgroundColor: {
+        'violet': '#8a2be2', // Custom color definition
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
   ],
+
 
 }
