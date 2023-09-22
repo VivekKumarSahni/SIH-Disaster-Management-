@@ -9,11 +9,13 @@ function Navbar1() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">RescueConnect</Navbar.Brand>
+        <a class="navbar-brand" href="/">
+          <img src="https://yt3.googleusercontent.com/ytc/AOPolaQGbEJcg1RTYwjZTh8P_DCC52aykKl95rdAjjRBxQ=s900-c-k-c0x00ffffff-no-rj" alt="Logo" width="30" height="24" class="d-inline-block align-text-top" />
+          RescueConnect
+        </a>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
             {/* <Nav.Link href="#link">Link</Nav.Link> */}
 
             <NavDropdown
@@ -27,7 +29,7 @@ function Navbar1() {
             >
               <NavDropdown.Item href="/registerAgency"> Register</NavDropdown.Item>
               <NavDropdown.Item href="/loginAgency">
-               Login
+                Login
               </NavDropdown.Item>
               {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider /> */}
@@ -43,7 +45,7 @@ function Navbar1() {
             >
               <NavDropdown.Item href="/registerUser"> Register</NavDropdown.Item>
               <NavDropdown.Item href="/loginUser">
-               Login
+                Login
               </NavDropdown.Item>
               {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider /> */}

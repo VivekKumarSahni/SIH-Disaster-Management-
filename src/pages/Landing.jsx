@@ -4,7 +4,6 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { GuideBlog } from "../components/GuideBlog";
-import Navbar from "../components/Navbar";
 import LocationPickerModal from "./LocationPickerModal";
 import { Navigate, useNavigate } from "react-router-dom";
 import Navbar1 from "../components/Navbar1";

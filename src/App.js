@@ -13,7 +13,6 @@ import Login_Agency from './Auth/Login_Agency';
 import RegisterAgency from './Auth/RegisterAgency';
 import RegisterUser from './Auth/RegisterUser';
 import Landing from './pages/Landing';
-import Navbar from './components/Navbar';
 const router = createBrowserRouter([
   {
     path: '/agency',
