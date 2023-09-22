@@ -50,9 +50,11 @@ server.use('/alerts', alertRouter.router);
 main().catch(err=> console.log(err));
 
 async function main(){
+    // await mongoose.connect('mongodb+srv://VivekSahni:Vivek%4080819935@cluster0.eonu2g9.mongodb.net/SecureConnectDB?retryWrites=true&w=majority');
     await mongoose.connect('mongodb://127.0.0.1:27017/RescueConnect');
     console.log('database connected')
 }
+
 
 server.get('/', (req,res)=>{
         res.json({status:"success"});
@@ -60,5 +62,5 @@ server.get('/', (req,res)=>{
 
 
 server.listen(8080, ()=>{
-    console.log("server started")
+    console.log("server started");
 })

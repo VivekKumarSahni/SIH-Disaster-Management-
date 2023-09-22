@@ -28,12 +28,18 @@ import './Map.css';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAgencyAsync, selectAllAgency } from "./agencySlice";
 import { useEffect } from "react";
+import { getAllAlerts, selectAllAlerts } from "../Alert/alertSlice";
 
 export default function Map() {
 
     const customIcon = new Icon({
         
         iconUrl: require("./location.png"),
+        iconSize: [38, 38] // size of the icon
+      });
+    const customIcon2 = new Icon({
+        
+        iconUrl: require("./location2.png"),
         iconSize: [38, 38] // size of the icon
       });
       const markers = [
@@ -53,17 +59,20 @@ export default function Map() {
       const dispatch= useDispatch();
       useEffect(()=>{
         dispatch(getAllAgencyAsync());
+        dispatch(getAllAlerts());
 
 },[dispatch]);
 
       const agencies = useSelector(selectAllAgency);
+      const alerts = useSelector(selectAllAlerts);
       console.log(agencies);
+      console.log(alerts);
    return (
     <>
     <div>
       
     </div>
-      {agencies && <MapContainer center={[24.80498, 92.77359]} zoom={13}>
+      {(agencies && alerts) && <MapContainer center={[24.80498, 92.77359]} zoom={13}>
        
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -75,6 +84,11 @@ export default function Map() {
        {agencies.map((marker) => (
           <Marker position={marker.coordinates} icon={customIcon}>
             <Popup>{marker.deptName}</Popup>
+          </Marker>
+        ))}
+      {alerts.map((marker) => (
+          <Marker position={marker.coordinates} icon={customIcon2}>
+            <Popup>{marker.Address}</Popup>
           </Marker>
         ))}
          <Circle
