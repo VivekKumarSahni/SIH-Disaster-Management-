@@ -16,7 +16,7 @@ const LocationPickerModal = ({ show, onHide, onLocationSelect }) => {
       </Modal.Body>
       <Modal.Footer>
         <button type="button" className="btn btn-secondary" onClick={onHide}>
-          Close
+          CLOSE
         </button>
       </Modal.Footer>
     </Modal>

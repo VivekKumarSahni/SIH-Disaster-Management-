@@ -1,7 +1,8 @@
 import './App.css';
 import Landing2 from './pages/Landing2';
-import Register from './Auth/RegisterAgency';
 
+import Register from './Auth/RegisterAgency';
+import Landing from './pages/Landing';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -20,6 +21,8 @@ const router = createBrowserRouter([
     element: (
       <Landing2></Landing2>
     )
+
+
   },
   {
     path: '/',
@@ -28,8 +31,27 @@ const router = createBrowserRouter([
     )
   },
   {
+    path: '/agency',
+    path: '/agency',
+    element: (
+      <Landing></Landing>
+    )
+
+
+  },
+  {
+    path: '/agency',
+    element: (
+      <Landing></Landing>
+    )
+  },
+  {
     path: '/registerUser',
     element: (<RegisterUser></RegisterUser>),
+  },
+  {
+    path: '/myAgency',
+    element: (<Landing2></Landing2>),
   },
   {
     path: '/loginUser',
@@ -40,7 +62,7 @@ const router = createBrowserRouter([
     element: (<RegisterAgency></RegisterAgency>),
   },
   {
-    path: '/login_Agency',
+    path: '/loginAgency',
     element: (<Login_Agency></Login_Agency>),
   },
 

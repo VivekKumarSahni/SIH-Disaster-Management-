@@ -1,11 +1,15 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import React from "react";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { GuideBlog } from "../components/GuideBlog";
 import Navbar from "../components/Navbar";
 import LocationPickerModal from "./LocationPickerModal";
 import { Navigate, useNavigate } from "react-router-dom";
+import Navbar1 from "../components/Navbar1";
+
+import Modal1 from "./Modal1";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -28,17 +32,77 @@ const responsive = {
 
 function Landing() {
   const [blog, setBlog] = useState("guide");
-  const [selectedLocation, setSelectedLocation] = useState(null);
-  const [showModal, setShowModal] = useState(false);
 
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const Address = localStorage.getItem("address");
+  let r = 0;
+  const [showModal, setShowModal] = useState(false);
+  const [s, sets] = useState(false);
+  const [locationData, setLocationData] = useState(null);
+  const [locationInputValue, setLocationInputValue] = useState("");
+  const [currentAddress, setCurrentAddress] = useState("");
+  const [current, setcurrent] = useState("false");
+  const mapboxAccessToken =
+    "pk.eyJ1IjoiYXZpc2hlazEyNjkiLCJhIjoiY2xtbnZrbTB0MTF4MjJxcnhibmJqNHQybCJ9.eOAtr-xB5nAQfsD8Op1Gpw";
+  useEffect(() => {
+    // Fetch the user's current location when the component mounts
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxAccessToken}`;
+
+        try {
+          const response = await axios.get(geocodeUrl);
+          const firstResult = response.data.features[0];
+          const formattedAddress = firstResult.place_name;
+          setCurrentAddress(formattedAddress);
+        } catch (error) {
+          console.error("Error fetching address:", error);
+        }
+      });
+    } else {
+      console.error("Geolocation is not available in this browser.");
+    }
+    console.log(currentAddress);
+  }, [mapboxAccessToken]);
+  const [address, setaddress] = useState({ currentAddress });
+  const handleInputChange = (event) => {
+    setCurrentAddress(event.target.value);
+  };
+  const location = localStorage.getItem("address");
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
   };
 
   const handleModalShow = () => {
     setShowModal(true);
+    setcurrent(true);
   };
+  const handle = async () => {
+    sets(true);
+    try {
+      const address = { Address, status: "pending" };
+      console.log(address);
+      const response = await fetch("http://localhost:8080/alerts", {
+        method: "POST",
 
+        body: JSON.stringify(address),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.status === 201) {
+        console.message("Address added to alerts successfully.");
+      } else {
+        const data = await response.json();
+        console.error(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  const handle2 = () => {
+    sets(false);
+  };
   const handleModalHide = () => {
     setShowModal(false);
   };
@@ -46,6 +110,8 @@ function Landing() {
 
   return (
     <div>
+      <Navbar1></Navbar1>
+
       <head>
         <title>RescueConnect|Home</title>
         <link
@@ -56,7 +122,6 @@ function Landing() {
       </head>
       <body>
         {/* <!-- Navigation Bar --> */}
-        <Navbar />
         {/* <!-- Hero Section --> */}
         <div class="hero bg-primary text-white text-center py-5">
           <div class="container">
@@ -91,12 +156,15 @@ function Landing() {
                               class="form-control"
                               id="location"
                               placeholder="Enter your location"
+                              value={currentAddress}
+                              onChange={handleInputChange}
                             />
                           </div>
                           <div class="col-sm-4">
-                            <button class="btn btn-secondary">
+                            <button class="btn btn-secondary" onClick={handle}>
                               Apply for Assistance
                             </button>
+                            <Modal1 show={s} onHide={handle2} />
                           </div>
                           <div class="col-sm-3">
                             <button class="btn btn-secondary">

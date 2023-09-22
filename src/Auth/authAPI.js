@@ -22,7 +22,7 @@ export async function registerAgency(agencyData) {
     agencyData = { ...agencyData, coordinates: [coordinates.coordinates[0], coordinates.coordinates[1]] };
 
     console.log(agencyData);
-    const response = await fetch('http://localhost:8080/auth', {
+    const response = await fetch('http://localhost:8080/auth/register', {
       method: 'POST',
       body: JSON.stringify(agencyData),
       headers: { 'content-type': 'application/json' }
@@ -65,7 +65,7 @@ export async function registerAgency(agencyData) {
   export function checkAgency(loginInfo) {
     return new Promise(async (resolve,reject) => {
       try {
-        const response = await fetch('http://localhost:8080/auth/loginAgency', {
+        const response = await fetch('http://localhost:8080/auth/login', {
           method: 'POST',
           body: JSON.stringify(loginInfo),
           headers: { 'content-type': 'application/json' },
