@@ -2,7 +2,6 @@ import './App.css';
 import Landing2 from './pages/Landing2';
 
 import Register from './Auth/RegisterAgency';
-import Landing from './pages/Landing';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -19,13 +18,14 @@ import SignOut from './Auth/SignOut';
 
 
 
+import Landing from './pages/Landing';
 const router = createBrowserRouter([
   {
     path: '/agency',
     element: (
-   <Landing2></Landing2>
+      <Landing2></Landing2>
     )
-   
+
 
   },
   {
@@ -64,10 +64,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-   <div className="App">
-      
-     <RouterProvider router={router} />
-     
+    <div className="App">
+      <RouterProvider router={router} />
+
     </div>
   );
 }

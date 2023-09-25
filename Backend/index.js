@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const server = express();
-const fs = require('fs') ;
 const SECRET_KEY = "SECRET_KEY";
 
 
@@ -57,9 +56,15 @@ server.use('/alerts', alertRouter.router);
 main().catch(err=> console.log(err));
 
 async function main(){
+<<<<<<< HEAD
     await mongoose.connect('mongodb://127.0.0.1:27017/disasterDB');
+=======
+    // await mongoose.connect('mongodb+srv://VivekSahni:Vivek%4080819935@cluster0.eonu2g9.mongodb.net/SecureConnectDB?retryWrites=true&w=majority');
+    await mongoose.connect('mongodb://127.0.0.1:27017/RescueConnect');
+>>>>>>> 2126d493392d630d26a12f600807fb7763746c5c
     console.log('database connected')
 }
+
 
 server.get('/', (req,res)=>{
         res.json({status:"success"});
@@ -67,5 +72,5 @@ server.get('/', (req,res)=>{
 
 
 server.listen(8080, ()=>{
-    console.log("server started")
+    console.log("server started");
 })

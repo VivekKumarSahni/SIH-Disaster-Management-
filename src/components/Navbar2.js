@@ -17,7 +17,7 @@ const token = localStorage.getItem('token');
 
 
 const navigation = [
-  { name: 'Home', link: '/' },
+  { name: 'RescueConnect', link: '/' },
  
 ];
 const authNavigation = [
@@ -53,7 +53,8 @@ function Navbar2({ children }) {
                       <Link to={"/"}>
                         <img
                           className="h-8 w-8"
-                          src="https://cdn1.iconfinder.com/data/icons/smart-technology-turquoise-vol-1/256/Disaster_Management-512.png"
+                          // src="https://cdn1.iconfinder.com/data/icons/smart-technology-turquoise-vol-1/256/Disaster_Management-512.png"
+                          src="https://yt3.googleusercontent.com/ytc/AOPolaQGbEJcg1RTYwjZTh8P_DCC52aykKl95rdAjjRBxQ=s900-c-k-c0x00ffffff-no-rj"
                           alt="Your Company"
                         />
                       </Link>

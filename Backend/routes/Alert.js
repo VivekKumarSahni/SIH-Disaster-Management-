@@ -1,11 +1,12 @@
 const express = require('express');
-const { fetchAllAlerts } = require('../controller/Alert');
+const { fetchAllAlerts ,addAlert} = require('../controller/Alert');
 
 
 const router = express.Router();
 
 router.get('/', fetchAllAlerts)
     
+.post('/',addAlert);
        
 
 exports.router = router;
