@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Link, Navigate } from 'react-router-dom';
 import { checkUserAsync, selectError, selectloggedInUser } from './authSlice';
 import { useForm } from 'react-hook-form';
+import FirebaseContext from '../Context/FirebaseContext';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function Login() {
   } = useForm();
 
   console.log(errors);
-
+const {putData,signUpWithEmail}=useContext(FirebaseContext);
   return (
     <>
       {user && <Navigate to='/' replace={true}></Navigate>}
@@ -37,9 +38,11 @@ export default function Login() {
             noValidate
             onSubmit={handleSubmit((data) => {
               console.log(data);
-              dispatch(
-                checkUserAsync({ email: data.email, password: data.password })
-              );
+              // dispatch(
+              //   checkUserAsync({ email: data.email, password: data.password })
+              // );
+              putData('user/'+'vivek',{email: data.email, password: data.password});
+              signUpWithEmail( data.email, data.password );
             })}
             className="space-y-6"
             action="#"

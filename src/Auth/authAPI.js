@@ -18,8 +18,9 @@ async function getGeocode(agencyData) {
 
 export async function registerAgency(agencyData) {
   try {
-    const coordinates = await getGeocode(agencyData);
-    agencyData = { ...agencyData, coordinates: [coordinates.coordinates[0], coordinates.coordinates[1]] };
+    // const coordinates = await getGeocode(agencyData);
+    // agencyData = { ...agencyData, coordinates: [coordinates.coordinates[0], coordinates.coordinates[1]] };
+    agencyData = { ...agencyData, coordinates: [24.68553, 92.75063] };
 
     console.log(agencyData);
     const response = await fetch('http://localhost:8080/auth/register', {

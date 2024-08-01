@@ -53,9 +53,9 @@ exports.createAgency = async (req, res) => {
         if(matchedPassword){
           const token = jwt.sign({govtId:agency.govtId, id:agency._id}, SECRET_KEY);
           agency.token = token;
-          agency.save(()=>{
-            res.status(201).json({token:token});
-          })
+          await agency.save();
+
+    res.status(201).json({ token: token });
         }
 
 

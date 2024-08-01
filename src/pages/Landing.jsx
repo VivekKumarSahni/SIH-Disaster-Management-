@@ -131,7 +131,10 @@ function Landing() {
       <body>
         {/* <!-- Navigation Bar --> */}
         {/* <!-- Hero Section --> */}
-        <div class="hero bg-primary text-white text-center py-5">
+        <div
+         class="hero bg-primary text-white text-center py-5 relative">
+  <div style={{backgroundColor : "red",height:"100%", width:"100%",backgroundImage: "url('./patrick-perkins-Z3_uSvERPfM-unsplash.jpg')"}}>subsection</div>
+          {/* <img class="absolute" src="../assests/patrick-perkins-Z3_uSvERPfM-unsplash.jpg"/> */}
           <div class="container">
             <h1 class="display-4">RescueConnect</h1>
             <p class="lead">Empowering Resilience: Your Path to Safety</p>

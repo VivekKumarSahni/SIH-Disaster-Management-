@@ -1,6 +1,8 @@
 
 import React from "react";
 import Map from "../components/Agency/Map";
+import styles from "./Agency.module.css";
+import Resource from "../components/Agency/Resource";
 
 const responsive = {
   superLargeDesktop: {
@@ -45,8 +47,16 @@ function Landing2() {
             <p class="lead">Empowering Resilience: Our Path to Safety</p>
             
           </div>
+          
         </section>
-
+        <div className={styles.menu}>
+            <button className={styles.bt}>Home</button>
+            <button className={styles.bt}>Manage Resources</button>
+            <button className={styles.bt}>Other Agencies</button>
+          </div>
+     <div>
+      <Resource></Resource>
+     </div>
      <div>
         <Map></Map>
      </div>

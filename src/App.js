@@ -1,6 +1,7 @@
 import './App.css';
 import Landing2 from './pages/Landing2';
-
+import { getDatabase } from "firebase/database";
+import {app} from "./firebase";
 import Register from './Auth/RegisterAgency';
 import {
   createBrowserRouter,
@@ -13,6 +14,7 @@ import Login_Agency from './Auth/Login_Agency';
 import RegisterAgency from './Auth/RegisterAgency';
 import RegisterUser from './Auth/RegisterUser';
 import Landing from './pages/Landing';
+import FirebaseProvider from './Context/Firebase.js'
 const router = createBrowserRouter([
   {
     path: '/agency',
@@ -29,7 +31,6 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: '/agency',
     path: '/agency',
     element: (
       <Landing></Landing>
@@ -65,13 +66,16 @@ const router = createBrowserRouter([
   },
 
 ]);
-
+// const db = getDatabase(app);
 function App() {
   return (
+    <FirebaseProvider>
+    
     <div className="App">
       <RouterProvider router={router} />
 
     </div>
+    </FirebaseProvider>
   );
 }
 

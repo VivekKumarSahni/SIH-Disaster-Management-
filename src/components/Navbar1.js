@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
+import FirebaseContext from "../Context/FirebaseContext";
 // import './navbar.css'
 
 function Navbar1() {
+  const {signUpWithGoogle,logoutFromGoogle,user}=useContext(FirebaseContext);
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -23,7 +26,7 @@ function Navbar1() {
               id="basic-nav-dropdown"
               style={{
                 position: "absolute",
-                right: 160,
+                right: 200,
                 top: "2%",
               }}
             >
@@ -35,7 +38,7 @@ function Navbar1() {
               <NavDropdown.Divider /> */}
             </NavDropdown>
             <NavDropdown
-              title="User"
+              title={user?`${user.displayName}`:'User'}
               id="basic-nav-dropdown"
               style={{
                 position: "absolute",
@@ -43,10 +46,17 @@ function Navbar1() {
                 top: "2%",
               }}
             >
-              <NavDropdown.Item href="/registerUser"> Register</NavDropdown.Item>
+               { !user && (<> <NavDropdown.Item href="/registerUser"> Register</NavDropdown.Item>
               <NavDropdown.Item href="/loginUser">
                 Login
               </NavDropdown.Item>
+             <NavDropdown.Item onClick={signUpWithGoogle}>
+                Sign up With Google
+              </NavDropdown.Item></>)}
+              { user && <NavDropdown.Item onClick={logoutFromGoogle}>
+                Logout
+              </NavDropdown.Item>}
+              
               {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider /> */}
             </NavDropdown>

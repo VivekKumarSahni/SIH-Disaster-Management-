@@ -40,7 +40,7 @@ export default function Map() {
     const customIcon2 = new Icon({
         
         iconUrl: require("./location2.png"),
-        iconSize: [38, 38] // size of the icon
+        iconSize: [42, 42] // size of the icon
       });
       const markers = [
         {

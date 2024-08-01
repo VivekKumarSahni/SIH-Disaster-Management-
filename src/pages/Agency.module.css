@@ -1,0 +1,14 @@
+.menu{
+    background-color: #0d6efd;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    color:white;
+
+}
+.bt{
+    padding-left:1vw;
+    padding-right: 1vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
