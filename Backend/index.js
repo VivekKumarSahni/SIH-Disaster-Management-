@@ -15,21 +15,7 @@ const ws = require("ws");
 
 const {Redis} = require("ioredis");
 const { fetchLoggedInAgency } = require('./controller/Agency');
-// const pub = new Redis({
-//   host: "redis-1d8b90d5-vsahni674-2afa.a.aivencloud.com",
-//   port : 16414, 
-//   username : "default",
-//   password: "AVNS_3neM9mKllkhD_4AiAR5"
-// });
-// const sub = new Redis({
-//   host: "redis-1d8b90d5-vsahni674-2afa.a.aivencloud.com",
-//   port : 16414, 
-//   username : "default",
-//   password: "AVNS_3neM9mKllkhD_4AiAR5"
 
-// });
-
-// sub.subscribe("MESSAGES");
 
 // middlewares
 
@@ -66,7 +52,6 @@ app.use(cors({
 main().catch(err=> console.log(err));
 
 async function main(){
-    // await mongoose.connect('mongodb+srv://VivekSahni:Vivek%4080819935@cluster0.eonu2g9.mongodb.net/SecureConnectDB?retryWrites=true&w=majority');
     await mongoose.connect('mongodb://127.0.0.1:27017/RescueConnect');
     console.log('database connected')
 }
