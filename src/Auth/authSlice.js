@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { checkAgency, checkUser, registerAgency, signOut } from './authAPI';
+import { checkAgency, checkUser, registerAgency, signOut , updateAgency,updateAgencyDelRes,getLoggedInAgency} from './authAPI';
 
 
 const initialState = {
@@ -58,7 +58,28 @@ const initialState = {
   );
   
 
-
+  export const updateAgencyAsync = createAsyncThunk(
+    'agency/updateAgency',
+    async (data) => {
+      const response = await updateAgency(data.id,data.resource);
+      console.log(response);
+      return response.result;
+    }
+  );
+  export const updateAgencyDelResAsync = createAsyncThunk(
+    'agency/updateAgencyDelRes',
+    async (data) => {
+      const response = await updateAgencyDelRes(data.id,data.resId);
+      return response.result;
+    }
+  );
+  export const getLoggedInAgencyAsync = createAsyncThunk(
+    'agency/getLoggedInAgency',
+    async () => {
+      const response = await getLoggedInAgency();
+      return response.data;
+    }
+  );
 
 
 
@@ -114,7 +135,31 @@ const initialState = {
             state.status = 'idle';
             state.loggedInUser = null;
             state.agency = null
-          })
+          }).addCase(updateAgencyAsync.pending, (state) => {
+            state.status = 'loading';
+           
+          }).addCase(updateAgencyAsync.fulfilled, (state, action) => {
+            state.status = 'idle';
+            console.log(action.payload);
+            state.loggedInAgency=action.payload;
+            // state.loggedInAgency = {...loggedInAgency, resources:{...loggedInAgency.resources,...action.payload}};
+    
+    
+          }).addCase(updateAgencyDelResAsync.pending, (state) => {
+            state.status = 'loading';
+           
+          }).addCase(updateAgencyDelResAsync.fulfilled, (state, action) => {
+            state.status = 'idle';
+            state.loggedInAgency=action.payload;
+    
+          }).addCase(getLoggedInAgencyAsync.pending, (state) => {
+            state.status = 'loading';
+           
+          }).addCase(getLoggedInAgencyAsync.fulfilled, (state, action) => {
+            state.status = 'idle';
+            state.loggedInAgency=action.payload;
+    
+          });
     },
   });
 

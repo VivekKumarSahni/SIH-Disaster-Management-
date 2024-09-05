@@ -1,8 +1,10 @@
 import './App.css';
 import Landing2 from './pages/Landing2';
+// import Landing3 from './pages/Landing3';
 import { getDatabase } from "firebase/database";
 import {app} from "./firebase";
-import Register from './Auth/RegisterAgency';
+import ChatPage from './pages/ChatPage.jsx';
+import Chat from './components/ChatFeature/Chat.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,30 +18,9 @@ import RegisterUser from './Auth/RegisterUser';
 import Landing from './pages/Landing';
 import FirebaseProvider from './Context/Firebase.js'
 const router = createBrowserRouter([
-  {
-    path: '/agency',
-    element: (
-      <Landing2></Landing2>
-    )
-
-
-  },
+  
   {
     path: '/',
-    element: (
-      <Landing></Landing>
-    )
-  },
-  {
-    path: '/agency',
-    element: (
-      <Landing></Landing>
-    )
-
-
-  },
-  {
-    path: '/agency',
     element: (
       <Landing></Landing>
     )
@@ -52,6 +33,7 @@ const router = createBrowserRouter([
     path: '/myAgency',
     element: (<Landing2></Landing2>),
   },
+ 
   {
     path: '/loginUser',
     element: (<Login></Login>),
@@ -64,6 +46,10 @@ const router = createBrowserRouter([
     path: '/loginAgency',
     element: (<Login_Agency></Login_Agency>),
   },
+  {
+    path: '/chat',
+    element: (<Chat></Chat>)
+  }
 
 ]);
 // const db = getDatabase(app);

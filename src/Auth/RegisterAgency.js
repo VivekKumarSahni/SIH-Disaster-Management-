@@ -37,7 +37,7 @@ const dispatch= useDispatch();
             onSubmit={handleSubmit((data) => {
               console.log(data);
               dispatch(registerAgencyAsync(data));
-              
+               
             })}
           >
             <div>

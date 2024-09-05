@@ -32,6 +32,8 @@ import { getAllAlerts, selectAllAlerts } from "../Alert/alertSlice";
 
 export default function Map() {
 
+ 
+
     const customIcon = new Icon({
         
         iconUrl: require("./location.png"),

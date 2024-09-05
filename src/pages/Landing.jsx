@@ -7,6 +7,8 @@ import { GuideBlog } from "../components/GuideBlog";
 import LocationPickerModal from "./LocationPickerModal";
 import { Navigate, useNavigate } from "react-router-dom";
 import Navbar1 from "../components/Navbar1";
+import {selectloggedInAgency } from "../Auth/authSlice"
+import { useSelector, useDispatch } from 'react-redux';
 
 import Modal1 from "./Modal1";
 const responsive = {
@@ -30,6 +32,36 @@ const responsive = {
 };
 
 function Landing() {
+  
+  //  const agency = useSelector(selectloggedInAgency);
+  //  console.log(agency);
+  const [ws, setWs] = useState(null);
+  useEffect(() => {
+    connectToWs();
+
+  }, []);
+  function connectToWs() {
+    // const ws = new WebSocket("wss://chatapp-backend-2vo0.onrender.com");
+    const ws = new WebSocket("ws://localhost:8080");
+    setWs(ws);
+    ws.addEventListener('error', (error) => {
+      console.error('WebSocket error:', error);
+      // Handle WebSocket errors
+    });
+    ws.addEventListener("close",handleClose); //its called adding a ping
+  }
+  function handleClose() {
+    setTimeout(() => {
+      console.log("Disconnected. Trying to reconnect.");
+      ws.close();
+      connectToWs();
+    }, 1000);
+    
+      window.removeEventListener("close",handleClose);
+    
+  }
+  
+
   const [blog, setBlog] = useState("guide");
 
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -82,13 +114,22 @@ function Landing() {
     try {
       const address = { Address, status: "pending" };
       console.log(address);
-      const res = await fetch(
-        `https://www.mapquestapi.com/geocoding/v1/address?key=8gsJ3dqy4Z2QqtFQ5UjgJ5cfvJDOGgqE&location=${address.Address}`
+      if(currentAddress){
+      ws.send(
+        JSON.stringify({
+          alert: Address,
+        })
       );
-      const data = await res.json();
-      const lat = data.results[0].locations[0].latLng.lat;
-      const lng = data.results[0].locations[0].latLng.lng;
-      const coordinates = [lat, lng];
+    }
+      // const res = await fetch(
+      //   `https://www.mapquestapi.com/geocoding/v1/address?key=8gsJ3dqy4Z2QqtFQ5UjgJ5cfvJDOGgqE&location=${address.Address}`
+      // );
+      // //24.763184, 92.794973
+      // const data = await res.json();
+      // const lat = data.results[0].locations[0].latLng.lat;
+      // const lng = data.results[0].locations[0].latLng.lng;
+      // const coordinates = [lat, lng];
+      const coordinates = [24.763184, 92.794973];
       const alert = { ...address, coordinates };
       console.log(alert);
       const response = await fetch("http://localhost:8080/alerts", {
@@ -118,7 +159,8 @@ function Landing() {
 
   return (
     <div>
-      <Navbar1></Navbar1>
+      {/* {agency && <Navigate to='/agency' replace={true}></Navigate>} */}
+      
 
       <head>
         <title>RescueConnect|Home</title>
@@ -131,12 +173,12 @@ function Landing() {
       <body>
         {/* <!-- Navigation Bar --> */}
         {/* <!-- Hero Section --> */}
-        <div
-         class="hero bg-primary text-white text-center py-5 relative">
-  <div style={{backgroundColor : "red",height:"100%", width:"100%",backgroundImage: "url('./patrick-perkins-Z3_uSvERPfM-unsplash.jpg')"}}>subsection</div>
+        <section class="hero relative bg-black text-white text-center bg-cover bg-center" style={{ backgroundImage: 
+          "url('/banner3.jpg')",height: '80vh' }}>
+            <Navbar1></Navbar1>
           {/* <img class="absolute" src="../assests/patrick-perkins-Z3_uSvERPfM-unsplash.jpg"/> */}
-          <div class="container">
-            <h1 class="display-4">RescueConnect</h1>
+          <div class="container mt-5">
+            <h1 class="display-2">RescueConnect</h1>
             <p class="lead">Empowering Resilience: Your Path to Safety</p>
             <button class="btn btn-light btn-lg" onClick={handleModalShow}>
               SOS
@@ -147,7 +189,7 @@ function Landing() {
               onLocationSelect={handleLocationSelect}
             />
           </div>
-        </div>
+        </section>
         {/* <!-- Features Section --> */}
         <section style={{ textAlign: "center" }} id="features" class="py-5">
           <div class="container">
@@ -172,13 +214,13 @@ function Landing() {
                             />
                           </div>
                           <div class="col-sm-4">
-                            <button class="btn btn-secondary" onClick={handle}>
+                            <button class="btn btn-success" onClick={handle}>
                               Apply for Assistance
                             </button>
                             <Modal1 show={s} onHide={handle2} />
                           </div>
                           <div class="col-sm-3">
-                            <button class="btn btn-secondary">
+                            <button class="btn btn-success">
                               Check status
                             </button>
                           </div>
@@ -219,7 +261,7 @@ function Landing() {
             </div>
             <button
               onClick={() => setBlog("guide")}
-              className="btn btn-warning"
+              className="btn btn-primary"
               style={{
                 width: "90%",
                 margin: "auto",
@@ -256,7 +298,7 @@ function Landing() {
             </div>
             <button
               onClick={() => setBlog("tools")}
-              className="btn btn-warning"
+              className="btn btn-primary"
               style={{
                 width: "90%",
                 margin: "auto",
@@ -295,7 +337,7 @@ function Landing() {
                 setBlog("news");
                 console.log(blog);
               }}
-              className="btn btn-warning"
+              className="btn btn-primary"
               style={{
                 width: "90%",
                 margin: "auto",
@@ -323,7 +365,6 @@ function Landing() {
         {/* <!-- Bootstrap JavaScript (Popper.js and Bootstrap JS) --> */}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-        {/* <!-- Include additional JavaScript for your custom functionality --> */}
       </body>
     </div>
   );

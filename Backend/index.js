@@ -1,21 +1,41 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
-const server = express();
+const app = express();
 const SECRET_KEY = "SECRET_KEY";
-
+// const { Message } = require("./model/Agency");
+const jwt = require('jsonwebtoken');
+const Message = require("./model/Message");
 
 
 const authRouter = require('./routes/Auth');
 const agencyRouter = require('./routes/Agency');
 const alertRouter = require('./routes/Alert');
+const ws = require("ws");
 
+const {Redis} = require("ioredis");
+const { fetchLoggedInAgency } = require('./controller/Agency');
+// const pub = new Redis({
+//   host: "redis-1d8b90d5-vsahni674-2afa.a.aivencloud.com",
+//   port : 16414, 
+//   username : "default",
+//   password: "AVNS_3neM9mKllkhD_4AiAR5"
+// });
+// const sub = new Redis({
+//   host: "redis-1d8b90d5-vsahni674-2afa.a.aivencloud.com",
+//   port : 16414, 
+//   username : "default",
+//   password: "AVNS_3neM9mKllkhD_4AiAR5"
+
+// });
+
+// sub.subscribe("MESSAGES");
 
 // middlewares
 
 const Auth = (req,res, next)=>{
         const token = req.get('Authorizaton').split('Bearer')[1];
-        console.log(token);
+        // console.log(token);
         try{
             var decoded = jwt.verify(token,SECRET_KEY);
             if(decoded.govtId){
@@ -29,21 +49,17 @@ const Auth = (req,res, next)=>{
             res.sendStatus(401);
         }
 }
-server.use(cors({
+app.use(cors({
     origin: 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Include cookies if any in the request
   }));
 
 
-server.use(express.json()); // to parse req.body
-server.use('/auth', authRouter.router);
-server.use('/agency', agencyRouter.router);
-server.use('/alerts', alertRouter.router);
-
-
-
-
+  app.use(express.json()); // to parse req.body
+  app.use('/auth', authRouter.router);
+  app.use('/agency', agencyRouter.router);
+  app.use('/alerts', alertRouter.router);
 
 
 
@@ -55,12 +71,129 @@ async function main(){
     console.log('database connected')
 }
 
-
-server.get('/', (req,res)=>{
+app.get('/', (req,res)=>{
         res.json({status:"success"});
 })
 
+async function getUserDataFromRequest(token) {
+  
+       const decoded = jwt.verify(token, "SECRET_KEY");
+  //  console.log(decoded);
+   return decoded;
+    } 
+  
 
-server.listen(8080, ()=>{
+
+    app.get('/messages/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const token = req.headers['authorization'];
+    const userData = await getUserDataFromRequest(token); // Fetch user data
+    const ourUserId = userData.id;
+
+    // const messages = await Message.find({
+    //   sender: { $in: [userId, ourUserId] },
+    //   recipient: { $in: [userId, ourUserId] },
+    // }).sort({ createdAt: 1 });
+
+    res.json("success"); // Respond with the messages
+  } catch (err) {
+    res.status(401).json({ error: err.message || 'An error occurred' });
+  }
+});
+// server.get('/messages/:userId',async (req,res)=>{
+//   const {userId}= req.params;
+//   const userData = await getUserDataFromRequest(req);
+//   const ourUserId = userData._id;
+//   const messages= await Message.find({
+//    sender: {$in:[userId,ourUserId]},
+//    recipient: {$in:[userId,ourUserId]},
+//   }).sort({createdAt:1});
+//   res.json(messages);
+//  })
+
+const server = app.listen(8080, ()=>{
     console.log("server started");
 })
+
+
+const wss = new ws.WebSocketServer({ server }); //ws is just a library
+
+wss.on("connection", (connection, req) => {
+
+   
+  function notifyAboutOnlinePeople(){
+
+    [...wss.clients].forEach((client) => {
+      client.send(
+        JSON.stringify({
+          online: [...wss.clients].map((c) => ({
+            id: c.id,
+            deptName: c.deptName,
+          })), 
+        })
+      );
+    });
+   
+  }
+  // const cookies = req.headers.cookie;
+  // if (cookies) {
+  //   // console.log(cookies);
+  //   const tokenCookieString = cookies
+  //     .split(";")
+  //     .find((str) => str.startsWith("token"));
+  //   if (tokenCookieString) {
+  //     const token = tokenCookieString.split("=")[1];
+  //     if (token) {
+  //       jwt.verify(token, jwtSecret, {}, (err, userData) => {
+  //         if (err) throw err;
+  //         const { userId, username } = userData;
+  //         connection.userId = userId;
+  //         connection.username = username;
+  //       }); 
+  //     }
+  //   }}
+  const params = new URLSearchParams(req.url.split('?')[1]);
+  const token = params.get('token');
+  // console.log(token);
+
+  if(token){
+     const {id,deptName} = jwt.verify(token, "SECRET_KEY");
+     console.log(id, deptName);
+              connection.id = id;
+          connection.deptName = deptName;
+  }
+  
+  connection.on("message", async (message) => {
+    const messageData = JSON.parse(message.toString());
+    const { recipient, text, alert , file } = messageData;
+    // if(file)
+    // console.log({file});
+    if(alert){
+      [...wss.clients]
+      .forEach(c => c.send(JSON.stringify({
+        alert,
+      })));
+
+    }
+    if (recipient && text) {
+
+      const messageDoc = await Message.create({
+        sender:connection.id,
+        recipient,
+        text,
+       
+      });
+      console.log('created message');
+      [...wss.clients]
+        .filter(c => c.id === recipient)
+        .forEach(c => c.send(JSON.stringify({
+          text,
+          sender:connection.id,
+          recipient,
+           _id: messageDoc._id,
+        }))); //same person can send messages to many people(recepient) one by mobile other by laptop
+    }
+  }); 
+  notifyAboutOnlinePeople();
+});

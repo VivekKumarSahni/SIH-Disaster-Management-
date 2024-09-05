@@ -73,6 +73,9 @@ export async function registerAgency(agencyData) {
         });
         if (response.ok) {
           const data = await response.json();
+          console.log(data.token);
+          localStorage.setItem('token', data.token);
+
           resolve({ data });
         } else {
           const error = await response.json();
@@ -96,4 +99,45 @@ export function signOut(userId) {
     resolve({ data: "Success" });
   });
 } 
+export function updateAgency(id,data) {
+  return new Promise(async(resolve) =>{
+   const response = await fetch('/agency/'+id,{
+    method:'PATCH',
+    body:JSON.stringify(data),
+    headers:{'content-type':'application/json'}
+   })
+   const result = await response.json()
+   resolve({result});
+   console.log(result);
+  
+  }
+  )
+}
+export function updateAgencyDelRes(id,resId) {
+  return new Promise(async(resolve) =>{
+   const response = await fetch('/agency/'+id,{
+    method:'DELETE',
+    body:JSON.stringify({resourceId:resId}),
+    headers:{'content-type':'application/json'}
+   })
+   const result = await response.json()
+   resolve({result});
+  
+  }
+  )
+}
+export function getLoggedInAgency() {
+  return new Promise(async(resolve) =>{
+    const token = localStorage.getItem('token');
+
+   const response = await fetch('/agency/own',{
+    method:'GET',
+    headers:{'content-type':'application/json','Authorization':token}
+   })
+   const data = await response.json()
+   resolve({data});
+  
+  }
+  )
+}
 
