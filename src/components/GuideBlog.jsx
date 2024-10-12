@@ -1,15 +1,15 @@
 import React from "react";
 import "./guide.css";
 export const GuideBlog = (props) => {
-  const { blog } = props;
+  const { blog } = props;//#009688
   if (blog === "guide") {
     return (
       <>
-        <div class="card text-bg-dark mb-3" style={{ margin: "2rem" }}>
-          <div class="card-header">
+        <div class="card text-bg-dark mb-3" style={{ marginTop: "2rem"  }} >
+          <div class="card-header" style={{backgroundColor: "198754"}}>
             <h3>Guidelines</h3>
           </div>
-          <div class="card-body">
+          <div class="card-body" style={{backgroundColor: "198754"}}>
             {/* <h5 class="card-title">Primary card title</h5> */}
             <p class="card-text">
               <div>

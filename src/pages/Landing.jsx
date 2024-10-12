@@ -11,6 +11,8 @@ import {selectloggedInAgency } from "../Auth/authSlice"
 import { useSelector, useDispatch } from 'react-redux';
 
 import Modal1 from "./Modal1";
+import Helpline from "../components/Agency/Helpline";
+import Assist from "../components/User/Assist";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -191,7 +193,7 @@ function Landing() {
           </div>
         </section>
         {/* <!-- Features Section --> */}
-        <section style={{ textAlign: "center" }} id="features" class="py-5">
+        <section style={{ textAlign: "center" }} id="features" class="py-5" >
           <div class="container">
             <center>
               <div class="row">
@@ -199,8 +201,8 @@ function Landing() {
                   style={{ width: "50%", margin: "auto" }}
                   class="col-lg-8 mb-8"
                 >
-                  <div class="card">
-                    <div class="card-body">
+                  <div class="card" >
+                    <div class="card-body" >
                       <div class="container mt-2">
                         <div class="row">
                           <div class="col-sm-5">
@@ -234,10 +236,15 @@ function Landing() {
             </center>
           </div>
         </section>
+        <Assist/>
+        <br></br>
+        <br></br>
+        <br></br>
+        <div class="container">
         <Carousel responsive={responsive}>
           <>
             <div
-              className="card mx-4"
+              className="card mx-4 "
               style={{ height: "200px", color: "white" }}
             >
               <img
@@ -261,7 +268,7 @@ function Landing() {
             </div>
             <button
               onClick={() => setBlog("guide")}
-              className="btn btn-primary"
+              className="btn btn-success"
               style={{
                 width: "90%",
                 margin: "auto",
@@ -298,11 +305,12 @@ function Landing() {
             </div>
             <button
               onClick={() => setBlog("tools")}
-              className="btn btn-primary"
+              className="btn btn-success"
               style={{
                 width: "90%",
                 margin: "auto",
                 display: "block",
+                // background:"#009688",
                 borderTopLeftRadius: 0,
                 borderTopRightRadius: 0,
               }}
@@ -337,7 +345,7 @@ function Landing() {
                 setBlog("news");
                 console.log(blog);
               }}
-              className="btn btn-primary"
+              className="btn btn-success"
               style={{
                 width: "90%",
                 margin: "auto",
@@ -350,17 +358,19 @@ function Landing() {
             </button>
           </>
         </Carousel>
+        </div>
         <br></br>
         <br></br>
         <br></br>
-        <div>
+        <div class="container">
           <GuideBlog blog={blog} />
         </div>
-        c
+       
+        <Helpline/>
         {/* 
 <!-- Footer Section --> */}
-        <footer class="bg-dark text-white text-center py-3">
-          <div class="container">&copy; 2023 DMS</div>
+        <footer class="bg-dark text-white text-center py-3" style={{backgroundColor: "009688"}}>
+          <div class="container">&copy; 2024 DMS</div>
         </footer>
         {/* <!-- Bootstrap JavaScript (Popper.js and Bootstrap JS) --> */}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
