@@ -1,30 +1,7 @@
-
-
-// import { useLoadScript,GoogleMap  } from "@react-google-maps/api";
-// import { useMemo } from "react";
-
-// // import Map from "../components/map";
-
-// export default function Home() {
-//   const { isLoaded } = useLoadScript({
-//     googleMapsApiKey: "AIzaSyCGLln8lKHCSWL3repHu9cUpDX5l98DHgk",
-//     libraries: ["places"],
-//   });
-//   const center= useMemo(()=>({lat:24.80498,lng:92.77359}),[]);
-//   if (!isLoaded) return <div>Loading...</div>;
-//   return  (
-    
-//     <div>
-//         <GoogleMap zoom={10} center={center} mapContainerClassName="map-Container"></GoogleMap>
-//     </div>
-// );
-// }
-
 import { MapContainer, TileLayer, Marker, Popup,Circle } from "react-leaflet";
 import { Icon, divIcon, point } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import './Map.css';
-// import MarkerClusterGroup from "react-leaflet-cluster";
 import {  useSelector,useDispatch } from "react-redux";
 import {  selectAllAgency,getAllAgencyAsync } from "./agencySlice";
 import { useEffect } from "react";
