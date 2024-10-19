@@ -9,6 +9,7 @@ export default function Login_Agency() {
   const dispatch = useDispatch();
   const error = useSelector(selectError)
   const agency = useSelector(selectloggedInAgency)
+  // console.log(agency);
   const {
     register,
     handleSubmit,
@@ -19,7 +20,7 @@ export default function Login_Agency() {
 
   return (
     <>
-      {agency && <Navigate to='/' replace={true}></Navigate>}
+      {agency && <Navigate to='/myAgency' replace={true}></Navigate>}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -63,7 +64,7 @@ export default function Login_Agency() {
                     },
                   })}
                   type="string"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5  px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.govtId && (
                   <p className="text-red-500">{errors.govtId.message}</p>

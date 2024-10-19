@@ -25,12 +25,18 @@ import { Icon, divIcon, point } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import './Map.css';
 // import MarkerClusterGroup from "react-leaflet-cluster";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllAgencyAsync, selectAllAgency } from "./agencySlice";
+import {  useSelector,useDispatch } from "react-redux";
+import {  selectAllAgency,getAllAgencyAsync } from "./agencySlice";
 import { useEffect } from "react";
-import { getAllAlerts, selectAllAlerts } from "../Alert/alertSlice";
+import { selectAllAlerts ,getAllAlerts} from "../Alert/alertSlice";
 
 export default function Map() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllAgencyAsync());
+    dispatch(getAllAlerts());
+  }, [dispatch]);
 
     const customIcon = new Icon({
         
@@ -40,7 +46,7 @@ export default function Map() {
     const customIcon2 = new Icon({
         
         iconUrl: require("./location2.png"),
-        iconSize: [38, 38] // size of the icon
+        iconSize: [42, 42] // size of the icon
       });
       const markers = [
         {
@@ -56,12 +62,7 @@ export default function Map() {
           popUp: "Hello, I am pop up 3"
         }
       ];
-      const dispatch= useDispatch();
-      useEffect(()=>{
-        dispatch(getAllAgencyAsync());
-        dispatch(getAllAlerts());
-
-},[dispatch]);
+      
 
       const agencies = useSelector(selectAllAgency);
       const alerts = useSelector(selectAllAlerts);
