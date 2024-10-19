@@ -44,14 +44,7 @@ const handleNavigate = ()=>{
             onSubmit={handleSubmit((data) => {
               console.log(data);
               dispatch(registerAgencyAsync(data));
-<<<<<<< HEAD
                
-=======
-              reset();
-              // setRegistered(true);
-            
-              
->>>>>>> 5712c0f8470545b82d78344e1ff6ed62ec45ae19
             })}
           >
             <div>

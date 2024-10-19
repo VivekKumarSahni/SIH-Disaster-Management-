@@ -10,29 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  # build:
-
-  #   runs-on: ubuntu-latest
-
-  #   strategy:
-  #     matrix:
-  #       node-version: [18.x, 20.x, 22.x]
-  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-  #   steps:
-  #   - uses: actions/checkout@v4
-  #   - name: Use Node.js ${{ matrix.node-version }}
-  #     uses: actions/setup-node@v4
-  #     with:
-  #       node-version: ${{ matrix.node-version }}
-  #       cache: 'npm'
-  #   - name: "Installing dependencies"
-  #     run: npm i
-
-  #   - name: "Build Command"
-  #     run: npm run build --if-present
-
-  unit-tests:
+  build:
 
     runs-on: ubuntu-latest
 
@@ -51,6 +29,28 @@ jobs:
     - name: "Installing dependencies"
       run: npm i
 
-    - name: "Running test cases"
-      run: npm run test
+    - name: "Build Command"
+      run: npm run build --if-present
+
+  # unit-tests:
+
+  #   runs-on: ubuntu-latest
+
+  #   strategy:
+  #     matrix:
+  #       node-version: [18.x, 20.x, 22.x]
+  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #       cache: 'npm'
+  #   - name: "Installing dependencies"
+  #     run: npm i
+
+  #   - name: "Running test cases"
+  #     run: npm run test
     
