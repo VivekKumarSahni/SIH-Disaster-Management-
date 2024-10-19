@@ -91,10 +91,11 @@ export async function registerAgency(agencyData) {
 
 
   
-export function signOut(userId) {
+export function signOut() {
   return new Promise(async (resolve) => {
     
     // in backend we will remove userloggedin id
+    localStorage.removeItem('token');
 
     resolve({ data: "Success" });
   });

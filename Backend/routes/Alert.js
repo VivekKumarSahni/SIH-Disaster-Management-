@@ -5,6 +5,7 @@ const { fetchAllAlerts ,addAlert} = require('../controller/Alert');
 const router = express.Router();
 
 router.get('/', fetchAllAlerts)
+    
 .post('/',addAlert);
        
 

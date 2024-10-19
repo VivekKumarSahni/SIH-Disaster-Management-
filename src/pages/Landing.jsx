@@ -161,8 +161,14 @@ function Landing() {
 
   return (
     <div>
+<<<<<<< HEAD
       {/* {agency && <Navigate to='/agency' replace={true}></Navigate>} */}
       
+=======
+       
+      
+      {/* <Navbar1></Navbar1> */}
+>>>>>>> 5712c0f8470545b82d78344e1ff6ed62ec45ae19
 
       <head>
         <title>RescueConnect|Home</title>

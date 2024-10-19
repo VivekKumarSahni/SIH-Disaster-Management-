@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const Message = require("./model/Message");
 
 
+
 const authRouter = require('./routes/Auth');
 const agencyRouter = require('./routes/Agency');
 const alertRouter = require('./routes/Alert');
@@ -52,7 +53,12 @@ app.use(cors({
 main().catch(err=> console.log(err));
 
 async function main(){
+
+
+    // await mongoose.connect('mongodb+srv://VivekSahni:Vivek%4080819935@cluster0.eonu2g9.mongodb.net/SecureConnectDB?retryWrites=true&w=majority');
+
     await mongoose.connect('mongodb://127.0.0.1:27017/RescueConnect');
+
     console.log('database connected')
 }
 
