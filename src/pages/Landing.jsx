@@ -136,7 +136,7 @@ function Landing() {
       console.log(alert);
       const response = await fetch("http://localhost:8080/alerts", {
         method: "POST",
-
+                                                           
         body: JSON.stringify(alert),
         headers: { "Content-Type": "application/json" },
       });
