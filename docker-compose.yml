@@ -1,0 +1,45 @@
+
+services:
+  frontend:
+    build: .
+    container_name: frontend_container
+    ports:
+      - "3000:3000"  # Assuming the frontend uses Nginx to serve static files
+    depends_on:
+      - backend
+    networks:
+      - secureconnect
+
+  backend:
+    build: Backend
+    container_name: backend_container
+    ports:
+      - "8080:8080"  # Exposing the backend on port 8080
+    # environment:
+    #   - NODE_ENV=production
+    #   - PORT=8080
+    #   - MONGO_URL=mongodb://mongo:27017/mydatabase  # Connecting to the MongoDB service
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/RescueConnect
+    networks:
+      - secureconnect
+
+  mongo:
+    image: mongo:4.4.18
+    container_name: mongo_container
+    ports:
+      - "27017:27017"  # Exposing MongoDB on the default port
+    volumes:
+      - mongo-data:/data/db  # Mounting a volume for MongoDB persistence
+    networks:
+      - secureconnect
+
+networks:
+  secureconnect:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

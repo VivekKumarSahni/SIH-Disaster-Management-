@@ -6,7 +6,7 @@ const SECRET_KEY = "SECRET_KEY";
 // const { Message } = require("./model/Agency");
 const jwt = require('jsonwebtoken');
 const Message = require("./model/Message");
-
+require('dotenv').config();
 
 
 const authRouter = require('./routes/Auth');
@@ -21,7 +21,7 @@ const { fetchLoggedInAgency } = require('./controller/Agency');
 // middlewares
 
 const Auth = (req,res, next)=>{
-        const token = req.get('Authorizaton').split('Bearer')[1];
+        const token = req.get('Authorization').split('Bearer')[1];
         // console.log(token);
         try{
             var decoded = jwt.verify(token,SECRET_KEY);
@@ -57,7 +57,7 @@ async function main(){
 
     // await mongoose.connect('mongodb+srv://VivekSahni:Vivek%4080819935@cluster0.eonu2g9.mongodb.net/SecureConnectDB?retryWrites=true&w=majority');
 
-    await mongoose.connect('mongodb://127.0.0.1:27017/RescueConnect');
+    await mongoose.connect(process.env.MONGO_URI);
 
     console.log('database connected')
 }

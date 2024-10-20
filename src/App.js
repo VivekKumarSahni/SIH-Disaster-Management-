@@ -37,7 +37,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/myAgency',
-    element: (<Landing2Page></Landing2Page>),
+    element: (<Landing2></Landing2>),
   },
  
   {
