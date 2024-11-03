@@ -131,6 +131,7 @@ function Landing() {
       // const lat = data.results[0].locations[0].latLng.lat;
       // const lng = data.results[0].locations[0].latLng.lng;
       // const coordinates = [lat, lng];
+      
       const coordinates = [24.763184, 92.794973];
       const alert = { ...address, coordinates };
       console.log(alert);

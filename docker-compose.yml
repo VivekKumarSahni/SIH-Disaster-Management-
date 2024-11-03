@@ -19,27 +19,28 @@ services:
     #   - NODE_ENV=production
     #   - PORT=8080
     #   - MONGO_URL=mongodb://mongo:27017/mydatabase  # Connecting to the MongoDB service
-    depends_on:
-      - mongo
+    # depends_on:
+    #   - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017/RescueConnect
+      - MONGO_URI=mongodb+srv://vsahni674:eTVekLjGczzzOVJ5@cluster0.pcxyfvy.mongodb.net/MernChat?retryWrites=true&w=majority
+      # - MONGO_URI=mongodb://mongo:27017/RescueConnect
     networks:
       - secureconnect
 
-  mongo:
-    image: mongo:4.4.18
-    container_name: mongo_container
-    ports:
-      - "27017:27017"  # Exposing MongoDB on the default port
-    volumes:
-      - mongo-data:/data/db  # Mounting a volume for MongoDB persistence
-    networks:
-      - secureconnect
+  # mongo:
+  #   image: mongo:4.4.18
+  #   container_name: mongo_container
+  #   ports:
+  #     - "27017:27017"  # Exposing MongoDB on the default port
+  #   volumes:
+  #     - mongo-data:/data/db  # Mounting a volume for MongoDB persistence
+  #   networks:
+  #     - secureconnect
 
 networks:
   secureconnect:
     driver: bridge
 
-volumes:
-  mongo-data:
-    driver: local
+# volumes:
+#   mongo-data:
+#     driver: local

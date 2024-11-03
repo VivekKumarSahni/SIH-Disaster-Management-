@@ -16,6 +16,7 @@ const ws = require("ws");
 
 const {Redis} = require("ioredis");
 const { fetchLoggedInAgency } = require('./controller/Agency');
+const {produceMessage,startMessageConsumer} = require('./kafka.js');
 
 
 // middlewares
@@ -103,6 +104,8 @@ async function getUserDataFromRequest(token) {
 //   res.json(messages);
 //  })
 
+// startMessageConsumer();
+
 const server = app.listen(8080, ()=>{
     console.log("server started");
 })
@@ -175,6 +178,9 @@ wss.on("connection", (connection, req) => {
         text,
        
       });
+      // await produceMessage({ sender:connection.id,recipient,text});
+       console.log("message produced to kafka broker");
+
       console.log('created message');
       [...wss.clients]
         .filter(c => c.id === recipient)

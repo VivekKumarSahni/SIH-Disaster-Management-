@@ -17,4 +17,4 @@ jobs:
     - run: echo "${{secrets.DOCKERHUB_SECRET}}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
     - run: docker push vsahni/sih-disaster-management:latest
 
- 
+    # - run: docker push vsahni/SC-Backend:latest
